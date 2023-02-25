@@ -6,6 +6,7 @@ import '../../../data/entertaimnet_response.dart';
 import '../../../data/headline_response.dart';
 import '../../../data/sports_response.dart';
 import '../../../data/technology_response.dart';
+import '../../home/views/home_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -19,6 +20,14 @@ class DashboardView extends GetView<DashboardController> {
       child: DefaultTabController(
         length: 4,
         child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () async {
+              await auth.erase();
+              Get.offAll(() => const HomeView());
+            },
+            backgroundColor: Colors.redAccent,
+            child: const Icon(Icons.logout_rounded),
+          ),
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(120.0),
             child: Column(
@@ -69,7 +78,6 @@ class DashboardView extends GetView<DashboardController> {
             ],
           ),
         ),
-        
       ),
     );
   }
