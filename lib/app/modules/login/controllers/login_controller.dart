@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../utils/api.dart';
 import '../../dashboard/views/dashboard_view.dart';
 
 class LoginController extends GetxController {
@@ -48,7 +49,7 @@ class LoginController extends GetxController {
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
     if (decodedResponse['success'] == true) {
       authToken.write('token', decodedResponse['access_token']);
-      authToken.write('full_name', response.body['full_name']);
+      authToken.write('full_name', decodedResponse['full_name']);
       Get.offAll(() => const DashboardView());
     } else {
       Get.snackbar('Error', decodedResponse['message'],
