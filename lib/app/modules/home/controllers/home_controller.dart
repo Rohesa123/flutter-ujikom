@@ -1,12 +1,23 @@
+import 'dart:async';
 import 'package:get/get.dart';
+import '../../login/views/login_view.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
 
-  final count = 0.obs;
+  late Timer _pindah;
+
   @override
   void onInit() {
     super.onInit();
+    _pindah = Timer.periodic(
+      const Duration(seconds: 4),
+      (timer) => Get.off(
+        () => const LoginView(),
+        transition: Transition.leftToRight,
+      ),
+    );
+
   }
 
   @override
@@ -17,7 +28,6 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+    _pindah.cancel();
   }
-
-  void increment() => count.value++;
 }
