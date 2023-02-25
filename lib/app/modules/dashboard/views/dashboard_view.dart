@@ -51,15 +51,144 @@ class DashboardView extends GetView<DashboardController> {
               ],
             ),
           ),
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              Center(child: Text('Berita Headline')),
-              Center(child: Text('Berita Teknologi')),
-              Center(child: Text('Berita Sains')),
+              headline(),
+              beritaTeknologi(),
+              beritaSains(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  ListView beritaSains() {
+    return ListView(shrinkWrap: true, children: [
+      Container(
+        padding: const EdgeInsets.only(top: 5, left: 8, right: 8, bottom: 5),
+        height: 110,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                'https://picsum.photos/100',
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                      'Sri Mulyani Kecam Hidup Mewah Pejabat Pajak Buntut Kasus Rubicon - CNN Indonesia'), // Menampilkan judul berita
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text('Author : Muhammad Azwar'),
+                      Text('Sumber : detik.com'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ]);
+  }
+
+  ListView beritaTeknologi() {
+    return ListView(shrinkWrap: true, children: [
+      Container(
+        padding: const EdgeInsets.only(top: 5, left: 8, right: 8, bottom: 5),
+        height: 110,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                'https://picsum.photos/100',
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                      'Sri Mulyani Kecam Hidup Mewah Pejabat Pajak Buntut Kasus Rubicon - CNN Indonesia'), // Menampilkan judul berita
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text('Author : Muhammad Azwar'),
+                      Text('Sumber : detik.com'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ]);
+  }
+
+  ListView headline() {
+    return ListView(shrinkWrap: true, children: [
+      Container(
+        padding: const EdgeInsets.only(top: 5, left: 8, right: 8, bottom: 5),
+        height: 110,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                'https://picsum.photos/100',
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                      'Sri Mulyani Kecam Hidup Mewah Pejabat Pajak Buntut Kasus Rubicon - CNN Indonesia'), // Menampilkan judul berita
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text('Author : Muhammad Azwar'),
+                      Text('Sumber : detik.com'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ]);
   }
 }
