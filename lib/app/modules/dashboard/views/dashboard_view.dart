@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 import '../../../data/entertaimnet_response.dart';
 import '../../../data/headline_response.dart';
@@ -13,7 +14,7 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     DashboardController controller = Get.put(DashboardController());
     final ScrollController scrollController = ScrollController();
-    
+    final auth = GetStorage();
     return SafeArea(
       child: DefaultTabController(
         length: 4,
@@ -27,8 +28,8 @@ class DashboardView extends GetView<DashboardController> {
                     "Hallo!",
                     textAlign: TextAlign.end,
                   ),
-                  subtitle: const Text(
-                    "Rohesa Sidiq Permana",
+                  subtitle: Text(
+                    auth.read('full_name').toString(),
                     textAlign: TextAlign.end,
                   ),
                   trailing: Container(
@@ -68,6 +69,7 @@ class DashboardView extends GetView<DashboardController> {
             ],
           ),
         ),
+        
       ),
     );
   }
