@@ -17,17 +17,17 @@ class DashboardController extends GetxController {
   }
 
   Future<EntertaimentResponse> getEntertaiment() async {
-    final response = await _getConnect.get(BaseUrl.headline);
+    final response = await _getConnect.get(BaseUrl.entertainment);
     return EntertaimentResponse.fromJson(jsonDecode(response.body));
   }
 
   Future<SportsResponse> getSports() async {
-    final response = await _getConnect.get(BaseUrl.headline);
+    final response = await _getConnect.get(BaseUrl.sports);
     return SportsResponse.fromJson(jsonDecode(response.body));
   }
 
   Future<TechnologyResponse> getTechnology() async {
-    final response = await _getConnect.get(BaseUrl.headline);
+    final response = await _getConnect.get(BaseUrl.technology);
     return TechnologyResponse.fromJson(jsonDecode(response.body));
   }
 
