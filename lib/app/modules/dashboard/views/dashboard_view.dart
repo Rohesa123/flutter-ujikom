@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
 import '../../../data/entertaimnet_response.dart';
 import '../../../data/headline_response.dart';
@@ -18,7 +19,7 @@ class DashboardView extends GetView<DashboardController> {
     final auth = GetStorage();
     return SafeArea(
       child: DefaultTabController(
-        length: 4,
+        length: 5,
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
@@ -29,40 +30,22 @@ class DashboardView extends GetView<DashboardController> {
             child: const Icon(Icons.logout_rounded),
           ),
           appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(120.0),
+            preferredSize: const Size.fromHeight(60.0),
             child: Column(
               children: [
-                ListTile(
-                  title: const Text(
-                    "Hallo!",
-                    textAlign: TextAlign.end,
-                  ),
-                  subtitle: Text(
-                    auth.read('full_name').toString(),
-                    textAlign: TextAlign.end,
-                  ),
-                  trailing: Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    width: 50.0,
-                    height: 50.0,
-                    child: Lottie.network(
-                      'https://gist.githubusercontent.com/olipiskandar/2095343e6b34255dcfb042166c4a3283/raw/d76e1121a2124640481edcf6e7712130304d6236/praujikom_kucing.json',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: TabBar(
-                    labelColor: Colors.black,
+                    labelColor: Colors.white70,
                     indicatorSize: TabBarIndicatorSize.label,
                     isScrollable: true,
                     indicatorColor: Colors.white,
                     tabs: [
-                      Tab(text: "Headline"),
+                      Tab(text: "Utama"),
                       Tab(text: "Teknologi"),
                       Tab(text: "Olahraga"),
                       Tab(text: "Hiburan"),
+                      Tab(text: "Profil"),
                     ],
                   ),
                 ),
@@ -75,9 +58,70 @@ class DashboardView extends GetView<DashboardController> {
               beritaTeknologi(controller, scrollController),
               beritaOlahraga(controller, scrollController),
               beritaHiburan(controller, scrollController),
+              Profil(context),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container Profil(BuildContext context) {
+    const url = "Rohesa123";
+    const email = "rohesasidiqpermana05@gmail.com";
+    const phone = "0859171421296"; // not real number :)
+    const location = "Bandung, Indonesia";
+    return Container(
+      padding: EdgeInsets.only(top: 30),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+        colors: [
+          HexColor('#18122B'),
+          HexColor('#393053'),
+        ],
+      )),
+      child: Column(
+        children: <Widget>[
+          CircleAvatar(
+            radius: 60,
+            backgroundImage: NetworkImage(
+                'https://scontent.fcgk35-1.fna.fbcdn.net/v/t1.6435-1/155515997_453587509126764_8394551113683974286_n.jpg?stp=dst-jpg_p200x200&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_eui2=AeFyL2uz5v1PCWpAdT3Q-0tRzKTndWmvCC7MpOd1aa8ILmk2-sEvdeiuLXcZvlcskABuB6A-fjXB2lUzBw6dlSyY&_nc_ohc=mglhDDGddvsAX9ZHYP2&_nc_ht=scontent.fcgk35-1.fna&oh=00_AfCE6W1w8uTg5x2gRwDAfP4jtilg7cLGIcED143OqJjnaQ&oe=642A2B67'),
+          ),
+          Text(
+            "Rohesa Sidiq Permana",
+            style: TextStyle(
+              fontSize: 30.0,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Pacifico",
+            ),
+          ),
+          Text(
+            "Fullstack Developer",
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.blueGrey[200],
+                letterSpacing: 2.5,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Source Sans Pro"),
+          ),
+          SizedBox(
+            height: 20,
+            width: 200,
+            child: Divider(
+              color: Colors.white,
+            ),
+          ),
+
+          // we will be creating a new widget name info carrd
+
+          InfoCard(text: phone, icon: Icons.phone),
+          InfoCard(text: url, icon: Icons.account_circle_rounded),
+          InfoCard(text: location, icon: Icons.location_city),
+          InfoCard(text: email, icon: Icons.email),
+        ],
       ),
     );
   }
@@ -391,6 +435,38 @@ class DashboardView extends GetView<DashboardController> {
           },
         );
       },
+    );
+  }
+}
+
+class InfoCard extends StatelessWidget {
+  // the values we need
+  final String text;
+  final IconData icon;
+
+  InfoCard({required this.text, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {},
+      child: Card(
+        color: Colors.white,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+        child: ListTile(
+          leading: Icon(
+            icon,
+            color: Colors.teal,
+          ),
+          title: Text(
+            text,
+            style: TextStyle(
+                color: Colors.teal,
+                fontSize: 20,
+                fontFamily: "Source Sans Pro"),
+          ),
+        ),
+      ),
     );
   }
 }

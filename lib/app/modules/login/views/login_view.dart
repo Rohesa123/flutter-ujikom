@@ -10,14 +10,14 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     LoginController controller = Get.put(LoginController());
     return Scaffold(
-      backgroundColor: HexColor('#feeee8'),
+      backgroundColor: HexColor('#18122B'),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 70.0),
               child: Lottie.network(
-                'https://gist.githubusercontent.com/olipiskandar/2095343e6b34255dcfb042166c4a3283/raw/d76e1121a2124640481edcf6e7712130304d6236/praujikom_kucing.json',
+                'https://assets8.lottiefiles.com/packages/lf20_V3w1XD.json',
                 fit: BoxFit.cover,
               ),
             ),

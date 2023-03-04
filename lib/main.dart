@@ -7,6 +7,7 @@ void main() async {
   await GetStorage.init();
   runApp(
     GetMaterialApp(
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: AppPages.INITIAL,
