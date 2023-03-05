@@ -9,6 +9,8 @@ import '../../../data/sports_response.dart';
 import '../../../data/technology_response.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/dashboard_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:text_scroll/text_scroll.dart';
 
 class DashboardView extends GetView<DashboardController> {
   const DashboardView({Key? key}) : super(key: key);
@@ -71,6 +73,8 @@ class DashboardView extends GetView<DashboardController> {
     const email = "rohesasidiqpermana05@gmail.com";
     const phone = "0859171421296"; // not real number :)
     const location = "Bandung, Indonesia";
+    const aboutMe =
+        "Hai, nama saya Rohesa Sidiq Permana. Saya Junior Programer dari Bandung, Indonesia. Saya suka belajar bahasa pemrograman. Saya suka membuat aplikasi menggunakan framework Laravel dan membuat service dengan framework Spring.";
     return Container(
       padding: EdgeInsets.only(top: 30),
       decoration: BoxDecoration(
@@ -82,46 +86,90 @@ class DashboardView extends GetView<DashboardController> {
           HexColor('#393053'),
         ],
       )),
-      child: Column(
-        children: <Widget>[
-          CircleAvatar(
-            radius: 60,
-            backgroundImage: NetworkImage(
-                'https://scontent.fcgk35-1.fna.fbcdn.net/v/t1.6435-1/155515997_453587509126764_8394551113683974286_n.jpg?stp=dst-jpg_p200x200&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_eui2=AeFyL2uz5v1PCWpAdT3Q-0tRzKTndWmvCC7MpOd1aa8ILmk2-sEvdeiuLXcZvlcskABuB6A-fjXB2lUzBw6dlSyY&_nc_ohc=mglhDDGddvsAX9ZHYP2&_nc_ht=scontent.fcgk35-1.fna&oh=00_AfCE6W1w8uTg5x2gRwDAfP4jtilg7cLGIcED143OqJjnaQ&oe=642A2B67'),
-          ),
-          Text(
-            "Rohesa Sidiq Permana",
-            style: TextStyle(
-              fontSize: 30.0,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Pacifico",
-            ),
-          ),
-          Text(
-            "Fullstack Developer",
-            style: TextStyle(
-                fontSize: 20,
-                color: Colors.blueGrey[200],
-                letterSpacing: 2.5,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Source Sans Pro"),
-          ),
-          SizedBox(
-            height: 20,
-            width: 200,
-            child: Divider(
-              color: Colors.white,
-            ),
-          ),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 30),
+        child: Stack(
+          children: [
+            Column(
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(
+                      'https://scontent.fcgk35-1.fna.fbcdn.net/v/t1.6435-1/155515997_453587509126764_8394551113683974286_n.jpg?stp=dst-jpg_p200x200&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_eui2=AeFyL2uz5v1PCWpAdT3Q-0tRzKTndWmvCC7MpOd1aa8ILmk2-sEvdeiuLXcZvlcskABuB6A-fjXB2lUzBw6dlSyY&_nc_ohc=mglhDDGddvsAX9ZHYP2&_nc_ht=scontent.fcgk35-1.fna&oh=00_AfCE6W1w8uTg5x2gRwDAfP4jtilg7cLGIcED143OqJjnaQ&oe=642A2B67'),
+                ),
+                Text(
+                  "Rohesa Sidiq Permana",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Pacifico",
+                  ),
+                ),
+                Text(
+                  "Backend Developer",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.blueGrey[200],
+                      letterSpacing: 2.5,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Source Sans Pro"),
+                ),
+                SizedBox(
+                  height: 20,
+                  width: 200,
+                  child: Divider(
+                    color: Colors.white,
+                  ),
+                ),
 
-          // we will be creating a new widget name info carrd
+                // we will be creating a new widget name info carrd
 
-          InfoCard(text: phone, icon: Icons.phone),
-          InfoCard(text: url, icon: Icons.account_circle_rounded),
-          InfoCard(text: location, icon: Icons.location_city),
-          InfoCard(text: email, icon: Icons.email),
-        ],
+                InfoCard(text: phone, icon: Icons.phone),
+                InfoCard(text: url, icon: Icons.account_circle_rounded),
+                InfoCard(text: location, icon: Icons.location_city),
+                InfoCard(text: email, icon: Icons.email),
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  child: Text(
+                    "About Me",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueGrey[200],
+                        letterSpacing: 2.5,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Source Sans Pro"),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                  width: 200,
+                  child: Divider(
+                    color: Colors.white,
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Center(
+                      child: Text(
+                        aboutMe,
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.teal,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Pacifico",
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -149,13 +197,18 @@ class DashboardView extends GetView<DashboardController> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.white54),
+                ),
+              ),
               padding: const EdgeInsets.only(
                 top: 5,
                 left: 8,
                 right: 8,
                 bottom: 5,
               ),
-              height: 110,
+              height: 150,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -190,6 +243,38 @@ class DashboardView extends GetView<DashboardController> {
                             Text(
                                 'Author : ${snapshot.data!.data![index].author}'),
                             Text('Sumber :${snapshot.data!.data![index].name}'),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      border: Border.all(
+                                          width: 2, color: Colors.white70),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        var url =
+                                            '${snapshot.data!.data![index].url}';
+                                        if (await canLaunch(url)) {
+                                          await launch(url);
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                      },
+                                      child: Text(
+                                        "Buka Di Browser",
+                                        style: TextStyle(color: Colors.white70),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ],
@@ -227,13 +312,18 @@ class DashboardView extends GetView<DashboardController> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.white54),
+                ),
+              ),
               padding: const EdgeInsets.only(
                 top: 5,
                 left: 8,
                 right: 8,
                 bottom: 5,
               ),
-              height: 110,
+              height: 150,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -268,6 +358,38 @@ class DashboardView extends GetView<DashboardController> {
                             Text(
                                 'Author : ${snapshot.data!.data![index].author}'),
                             Text('Sumber :${snapshot.data!.data![index].name}'),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      border: Border.all(
+                                          width: 2, color: Colors.white70),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        var url =
+                                            '${snapshot.data!.data![index].url}';
+                                        if (await canLaunch(url)) {
+                                          await launch(url);
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                      },
+                                      child: Text(
+                                        "Buka Di Browser",
+                                        style: TextStyle(color: Colors.white70),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ],
@@ -305,13 +427,18 @@ class DashboardView extends GetView<DashboardController> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.white54),
+                ),
+              ),
               padding: const EdgeInsets.only(
                 top: 5,
                 left: 8,
                 right: 8,
                 bottom: 5,
               ),
-              height: 110,
+              height: 150,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -346,6 +473,38 @@ class DashboardView extends GetView<DashboardController> {
                             Text(
                                 'Author : ${snapshot.data!.data![index].author}'),
                             Text('Sumber :${snapshot.data!.data![index].name}'),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      border: Border.all(
+                                          width: 2, color: Colors.white70),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        var url =
+                                            '${snapshot.data!.data![index].url}';
+                                        if (await canLaunch(url)) {
+                                          await launch(url);
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                      },
+                                      child: Text(
+                                        "Buka Di Browser",
+                                        style: TextStyle(color: Colors.white70),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ],
@@ -383,13 +542,18 @@ class DashboardView extends GetView<DashboardController> {
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.white54),
+                ),
+              ),
               padding: const EdgeInsets.only(
                 top: 5,
                 left: 8,
                 right: 8,
                 bottom: 5,
               ),
-              height: 110,
+              height: 150,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -424,6 +588,38 @@ class DashboardView extends GetView<DashboardController> {
                             Text(
                                 'Author : ${snapshot.data!.data![index].author}'),
                             Text('Sumber :${snapshot.data!.data![index].name}'),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      border: Border.all(
+                                          width: 2, color: Colors.white70),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        var url =
+                                            '${snapshot.data!.data![index].url}';
+                                        if (await canLaunch(url)) {
+                                          await launch(url);
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                      },
+                                      child: Text(
+                                        "Buka Di Browser",
+                                        style: TextStyle(color: Colors.white70),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ],
@@ -458,12 +654,17 @@ class InfoCard extends StatelessWidget {
             icon,
             color: Colors.teal,
           ),
-          title: Text(
-            text,
-            style: TextStyle(
-                color: Colors.teal,
-                fontSize: 20,
-                fontFamily: "Source Sans Pro"),
+          title: Container(
+            child: TextScroll(
+              text,
+              velocity: Velocity(pixelsPerSecond: Offset(50, 0)),
+              pauseBetween: Duration(milliseconds: 1000),
+              mode: TextScrollMode.bouncing,
+              style: TextStyle(
+                  color: Colors.teal,
+                  fontSize: 20,
+                  fontFamily: "Source Sans Pro"),
+            ),
           ),
         ),
       ),
